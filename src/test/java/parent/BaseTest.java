@@ -22,6 +22,7 @@ public class BaseTest {
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(browser);
     }
+
     @AfterMethod
     public void close() {
         browser.quit();
