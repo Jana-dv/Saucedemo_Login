@@ -1,32 +1,45 @@
 package LoginTests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import parent.BaseTest;
-
-import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
-    @Test
-    public void standardUserTest() {
+    @Test(description = "Проверка корректной авторизации")
+    public void checkCorrectLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        boolean isPresent = browser.findElement(By.cssSelector(".title")).isDisplayed();
-        assertTrue(isPresent);
+        assertTrue(productsPage.isTitlePresent());
+        assertEquals(productsPage.getTitle(), "Products", "Название заголовка не соответсвует ожидаемому");
     }
 
-    @Test
-    public void blockedUserTest() {
-        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
+    @Test(description = "Провекрка регистрации заблокированного юзера")
+    public void checkLockedUserLogin() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[@data-test='error']")));
-        String errorMsg = browser.findElement(By.xpath("//h3[@data-test='error']")).getText();
-        assertEquals(errorMsg, "Epic sadface: Sorry, this user has been locked out.");
+        assertEquals(loginPage.checkErrorMessage(), "Epic sadface: Sorry, this user has been locked out.");
+    }
+
+    @Test(description = "Проверка авторизации без ввода Username")
+    public void checkNoUsernameLogin() {
+        loginPage.open();
+        loginPage.login("", "secret_sauce");
+        assertEquals(loginPage.checkErrorMessage(), "Epic sadface: Username is required", "Текст ошибки не совпадает с ожидаемым");
+    }
+
+    @Test (description = "Проверка авторизации без ввода Password")
+    public void checkNoPasswordLogin() {
+        loginPage.open();
+        loginPage.login("standard_user", "");
+        assertEquals(loginPage.checkErrorMessage(), "Epic sadface: Password is required", "Текст ошибки не совпадает с ожидаемым");
+    }
+
+    @Test(description = "Добавление товара в корзину")
+    public void checkAddToCart() {
+        loginPage.open();
+        loginPage.login("standard_user", "secret_sauce");
+        productsPage.addToCart("Sauce Labs Fleece Jacket");
     }
 }
