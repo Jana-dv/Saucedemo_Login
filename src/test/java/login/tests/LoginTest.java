@@ -1,4 +1,4 @@
-package LoginTests;
+package login.tests;
 
 import org.testng.annotations.Test;
 import parent.BaseTest;
