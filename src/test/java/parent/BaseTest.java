@@ -5,15 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.LoginPage;
-import pages.ProductsPage;
+import pages.loginPage;
+import pages.productsPage;
 
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
-    protected LoginPage loginPage;
-    protected ProductsPage productsPage;
+    protected loginPage loginPage;
+    protected productsPage productsPage;
 
     @BeforeMethod
     public void setup() {
@@ -22,8 +22,8 @@ public class BaseTest {
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        loginPage = new LoginPage(driver);
-        productsPage = new ProductsPage(driver);
+        loginPage = new loginPage(driver);
+        productsPage = new productsPage(driver);
     }
 
     @AfterMethod
