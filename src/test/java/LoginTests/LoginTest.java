@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
         assertEquals(loginPage.checkErrorMessage(), "Epic sadface: Username is required", "Текст ошибки не совпадает с ожидаемым");
     }
 
-    @Test (description = "Проверка авторизации без ввода Password")
+    @Test(description = "Проверка авторизации без ввода Password")
     public void checkNoPasswordLogin() {
         loginPage.open();
         loginPage.login("standard_user", "");
