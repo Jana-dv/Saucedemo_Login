@@ -15,7 +15,6 @@ public class AddGoodsToCartTest extends BaseTest {
         assertTrue(productsPage.isTitlePresent());
         assertEquals(productsPage.getTitle(), "Products", "Название заголовка не соответсвует ожидаемому");
         productsPage.addToCart(0);
-        productsPage.addToCart(0);
-        productsPage.addToCart(0);
+        productsPage.addToCart(1);
     }
 }
