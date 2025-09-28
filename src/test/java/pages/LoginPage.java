@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
 
@@ -15,7 +16,10 @@ public class LoginPage extends BasePage {
     private static final By ERROR = By.xpath("//h3[@data-test='error']");
 
     public void open() {
-        driver.get(BASE_URL + "inventory.html");
+        driver.get(BASE_URL + "/inventory.html");
+    }
+    public void open(String path) {
+        driver.get(BASE_URL + path);
     }
 
     public void login(String username, String password) {

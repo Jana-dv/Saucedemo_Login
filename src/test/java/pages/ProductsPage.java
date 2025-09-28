@@ -31,4 +31,17 @@ public class ProductsPage extends BasePage {
     public void addToCart(int goodsIndex) {
         driver.findElements(ADD_TO_CART_BUTTON).get(goodsIndex).click();
     }
+
+    public void openCart() {
+        driver.findElement(By.xpath("//*[@data-test='shopping-cart-link']")).click();
+    }
+
+    public String getProductName(int goodIndex) {
+        return driver.findElements(By.cssSelector(".inventory_item_name")).get(goodIndex).getText();
+    }
+// Определяем количество товаров на странице каталога ("Products")
+    public int getProductQuantity() {
+        return driver.findElements(By.cssSelector(".inventory_item_name")).size();
+    }
 }
+
