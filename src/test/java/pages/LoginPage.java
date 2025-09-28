@@ -15,11 +15,7 @@ public class LoginPage extends BasePage {
     private static final By ERROR = By.xpath("//h3[@data-test='error']");
 
     public void open() {
-        driver.get(BASE_URL + "/inventory.html");
-    }
-
-    public void open(String path) {
-        driver.get(BASE_URL + path);
+        driver.get(BASE_URL);
     }
 
     public void login(String username, String password) {
