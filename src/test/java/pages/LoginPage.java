@@ -2,7 +2,6 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage extends BasePage {
 
@@ -18,6 +17,7 @@ public class LoginPage extends BasePage {
     public void open() {
         driver.get(BASE_URL + "/inventory.html");
     }
+
     public void open(String path) {
         driver.get(BASE_URL + path);
     }
