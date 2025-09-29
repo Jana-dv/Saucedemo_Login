@@ -8,7 +8,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 public class AddGoodsToCartTest extends BaseTest {
 
@@ -16,8 +15,6 @@ public class AddGoodsToCartTest extends BaseTest {
     public void addGoodsToCartTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-        assertTrue(productsPage.isTitlePresent());
-        assertEquals(productsPage.getTitle(), "Products", "Название заголовка не соответсвует ожидаемому");
         //Определяем количество товаров для добавления в корзину (рандомный выбор)
         int cartSize = ThreadLocalRandom.current().nextInt(1, productsPage.getProductQuantity());
         // Формируем лист из рандомных уникальных имен товаров

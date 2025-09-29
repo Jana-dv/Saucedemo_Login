@@ -23,6 +23,7 @@ public class BaseTest {
         options.addArguments("--guest");
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);

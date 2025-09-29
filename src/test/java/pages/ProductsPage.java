@@ -10,6 +10,7 @@ public class ProductsPage extends BasePage {
     //private static final By ADD_TO_CART_BUTTON = By.xpath("//*[text()='Add to cart']");
     private static final String ADD_TO_CART_BUTTON_PATTERN =
             "//*[text() = '%s']//ancestor::div[@class = 'inventory_item']//child::button[text() = 'Add to cart']";
+    static final By ITEM_NAME = By.cssSelector(".inventory_item_name");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -33,11 +34,12 @@ public class ProductsPage extends BasePage {
     }
 
     public String getProductName(int goodIndex) {
-        return driver.findElements(By.cssSelector(".inventory_item_name")).get(goodIndex).getText();
+        return driver.findElements(ITEM_NAME).get(goodIndex).getText();
     }
-// Определяем количество товаров на странице каталога ("Products")
+
+    // Определяем количество товаров на странице каталога ("Products")
     public int getProductQuantity() {
-        return driver.findElements(By.cssSelector(".inventory_item_name")).size();
+        return driver.findElements(ITEM_NAME).size();
     }
 }
 
