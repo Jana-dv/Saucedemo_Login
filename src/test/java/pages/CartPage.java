@@ -1,14 +1,15 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static pages.ProductsPage.ITEM_NAME;
 
 public class CartPage extends BasePage {
+    static final By ITEM_NAME = By.cssSelector(".inventory_item_name");
     public CartPage(WebDriver driver) {
         super(driver);
     }
