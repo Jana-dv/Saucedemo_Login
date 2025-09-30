@@ -7,9 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProductsPage extends BasePage {
     final By title = By.xpath("//span[@data-test='title']");
     final By title2 = By.xpath("//*[text()='Products']");
-    private static final By ADD_TO_CART_BUTTON = By.xpath("//*[text()='Add to cart']");
+    //private static final By ADD_TO_CART_BUTTON = By.xpath("//*[text()='Add to cart']");
     private static final String ADD_TO_CART_BUTTON_PATTERN =
             "//*[text() = '%s']//ancestor::div[@class = 'inventory_item']//child::button[text() = 'Add to cart']";
+    static final By ITEM_NAME = By.cssSelector(".inventory_item_name");
 
     public ProductsPage(WebDriver driver) {
         super(driver);
@@ -28,7 +29,17 @@ public class ProductsPage extends BasePage {
         driver.findElement(addToCart).click();
     }
 
-    public void addToCart(int goodsIndex) {
-        driver.findElements(ADD_TO_CART_BUTTON).get(goodsIndex).click();
+    public void openCart() {
+        driver.findElement(By.xpath("//*[@data-test='shopping-cart-link']")).click();
+    }
+
+    public String getProductName(int goodIndex) {
+        return driver.findElements(ITEM_NAME).get(goodIndex).getText();
+    }
+
+    // Определяем количество товаров на странице каталога ("Products")
+    public int getProductQuantity() {
+        return driver.findElements(ITEM_NAME).size();
     }
 }
+
