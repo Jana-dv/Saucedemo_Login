@@ -14,8 +14,6 @@ import pages.LoginPage;
 import pages.ProductsPage;
 import utils.PropertyReader;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
 
 public class BaseTest {
