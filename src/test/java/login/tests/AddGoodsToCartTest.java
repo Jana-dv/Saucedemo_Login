@@ -2,7 +2,6 @@ package login.tests;
 
 import org.testng.annotations.Test;
 import parent.BaseTest;
-import user.UserFactory;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -16,7 +15,6 @@ public class AddGoodsToCartTest extends BaseTest {
 
     @Test
     public void checkGoodsInCart() {
-        System.out.println("AddGoods tests are running in thread: " + Thread.currentThread().getId());
         loginPage.open();
         loginPage.login(withAdminPermission());
         //Определяем количество товаров для добавления в корзину (рандомный выбор)

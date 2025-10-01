@@ -3,9 +3,10 @@ package login.tests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import parent.BaseTest;
-import utils.PropertyReader;
+import user.User;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
 public class LoginTest extends BaseTest {
@@ -19,20 +20,17 @@ public class LoginTest extends BaseTest {
 
     @DataProvider()
     public Object[][] loginData() {
-        locked_user = PropertyReader.getProperty("saucedemo.lockeduser");
-        user = PropertyReader.getProperty("saucedemo.user");
-        password = PropertyReader.getProperty("saucedemo.password");
         return new Object[][]{
-                {locked_user, password, "Epic sadface: Sorry, this user has been locked out."},
-                {"", password, "Epic sadface: Username is required"},
-                {user, "", "Epic sadface: Password is required"}
+                {withLockedUserPermission(), "Epic sadface: Sorry, this user has been locked out."},
+                {withEmptyUsername(), "Epic sadface: Username is required"},
+                {withEmptyPassword(), "Epic sadface: Password is required"}
         };
     }
 
     @Test(dataProvider = "loginData")
-    public void checkIncorrectLogin(String username, String password, String errorMessage) {
+    public void checkIncorrectLogin(User user, String errorMessage) {
         loginPage.open();
-        loginPage.login(user, password);
+        loginPage.login(user);
         assertEquals(loginPage.checkErrorMessage(), errorMessage);
     }
 

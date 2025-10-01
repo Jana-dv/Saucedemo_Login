@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -13,6 +14,8 @@ import pages.LoginPage;
 import pages.ProductsPage;
 import utils.PropertyReader;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 public class BaseTest {
@@ -22,7 +25,6 @@ public class BaseTest {
     protected CartPage cartPage;
     public String user;
     public String password;
-    public String locked_user;
 
     @Parameters({"browser"})
     @BeforeMethod
@@ -33,7 +35,12 @@ public class BaseTest {
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("edge")) {
-            driver = new EdgeDriver();
+            System.setProperty("webdriver.edge.driver", "src/test/resources/msedgedriver.exe");
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--start-maximized");
+            options.addArguments("--remote-allow-origins=*");
+            options.addArguments("--disable-blink-features=AutomationControlled");
+            driver = new EdgeDriver(options);
         }
 
         driver.manage().window().maximize();
