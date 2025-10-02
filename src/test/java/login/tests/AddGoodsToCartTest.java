@@ -7,14 +7,16 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
+import static user.UserFactory.*;
+
 import static org.testng.Assert.assertEquals;
 
 public class AddGoodsToCartTest extends BaseTest {
 
     @Test
-    public void addGoodsToCartTest() {
+    public void checkGoodsInCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(withAdminPermission());
         //Определяем количество товаров для добавления в корзину (рандомный выбор)
         int cartSize = ThreadLocalRandom.current().nextInt(1, productsPage.getProductQuantity());
         // Формируем лист из рандомных уникальных имен товаров
