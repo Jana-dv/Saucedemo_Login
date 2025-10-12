@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
+import static enums.DepartmentNaming.CART;
+import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
 
 import static org.testng.Assert.assertEquals;
@@ -45,6 +47,8 @@ public class AddGoodsToCartTest extends BaseTest {
         }
 
         productsPage.openCart();
+        assertTrue(cartPage.isTitlePresent());
+        assertEquals(cartPage.getTitle(), CART.getDisplayName(), "Название заголовка не соответсвует ожидаемому");
         List<String> productsInCart = cartPage.getProductsNames(); //Формируем лист из названий товаров в корзине
         assertEquals(productsToAdd, productsInCart, "Названия товаров не совпадают");
     }

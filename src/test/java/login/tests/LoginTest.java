@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import parent.BaseTest;
 import user.User;
 
+import static enums.DepartmentNaming.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static user.UserFactory.*;
@@ -23,7 +24,7 @@ public class LoginTest extends BaseTest {
         loginPage.open();
         loginPage.login(withAdminPermission());
         assertTrue(productsPage.isTitlePresent());
-        assertEquals(productsPage.getTitle(), "Products", "Название заголовка не соответсвует ожидаемому");
+        assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(), "Название заголовка не соответсвует ожидаемому");
     }
 
     @DataProvider()
