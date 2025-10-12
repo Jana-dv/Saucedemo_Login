@@ -1,5 +1,6 @@
 package login.tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import parent.BaseTest;
 
@@ -12,14 +13,27 @@ import static user.UserFactory.*;
 import static org.testng.Assert.assertEquals;
 
 public class AddGoodsToCartTest extends BaseTest {
+    @Epic("Модуль приложения: Корзина")
+    @Feature("Для физических лиц")
+    @Story("sl-1236")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("Yana Baranovskaya")
+    @TmsLink("Tests")
+    @Issue("Tests")
+    @Test(description = "Добавление товара в корзину")
+    public void checkAddToCart() {
+        loginPage.open();
+        loginPage.login(withAdminPermission());
+        productsPage.addToCart("Sauce Labs Fleece Jacket");
+    }
 
-    @Test
+    @Test(description = "Добавление товара в корзину и проверка содержимого корзины")
     public void checkGoodsInCart() {
         loginPage.open();
         loginPage.login(withAdminPermission());
         //Определяем количество товаров для добавления в корзину (рандомный выбор)
         int cartSize = ThreadLocalRandom.current().nextInt(1, productsPage.getProductQuantity());
-        // Формируем лист из рандомных уникальных имен товаров
+        //Формируем лист из рандомных уникальных имен товаров
         List<String> productsToAdd = Stream.generate(() -> ThreadLocalRandom.current().nextInt(0, productsPage.getProductQuantity()))
                 .distinct()
                 .limit(cartSize)
