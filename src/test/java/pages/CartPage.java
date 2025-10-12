@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CartPage extends BasePage {
     final By title = By.xpath("//span[@data-test='title']");
     final By title2 = By.xpath("//*[text()='Your Cart']");
