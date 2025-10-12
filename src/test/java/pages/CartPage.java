@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CartPage extends BasePage {
     static final By ITEM_NAME = By.cssSelector(".inventory_item_name");
 
