@@ -24,15 +24,15 @@ public class AddGoodsToCartTest extends BaseTest {
     @Issue("Tests")
     @Test(description = "Добавление товара в корзину")
     public void checkAddToCart() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage.open()
+                .login(withAdminPermission());
         productsPage.addToCart("Sauce Labs Fleece Jacket");
     }
 
     @Test(description = "Добавление товара в корзину и проверка содержимого корзины")
     public void checkGoodsInCart() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage.open()
+                .login(withAdminPermission());
         //Определяем количество товаров для добавления в корзину (рандомный выбор)
         int cartSize = ThreadLocalRandom.current().nextInt(1, productsPage.getProductQuantity());
         //Формируем лист из рандомных уникальных имен товаров

@@ -21,8 +21,8 @@ public class LoginTest extends BaseTest {
     @Issue("Tests")
     @Test(description = "Проверка корректной авторизации")
     public void checkCorrectLogin() {
-        loginPage.open();
-        loginPage.login(withAdminPermission());
+        loginPage.open()
+                .login(withAdminPermission());
         assertTrue(productsPage.isTitlePresent());
         assertEquals(productsPage.getTitle(), PRODUCTS.getDisplayName(), "Название заголовка не соответсвует ожидаемому");
     }
@@ -38,8 +38,8 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = ("loginData"), description = "Проверка авторизации с некорректными данными")
     public void checkIncorrectLogin(User user, String errorMessage) {
-        loginPage.open();
-        loginPage.login(user);
+        loginPage.open()
+                .login(user);
         assertEquals(loginPage.checkErrorMessage(), errorMessage);
     }
 }

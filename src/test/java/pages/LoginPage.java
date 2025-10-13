@@ -17,15 +17,17 @@ public class LoginPage extends BasePage {
     private static final By ERROR = By.xpath("//h3[@data-test='error']");
 
     @Step("Открытие браузера")
-    public void open() {
+    public LoginPage open() {
         driver.get(BASE_URL);
+        return this;
     }
 
     @Step("Логинимся под кредами пользователя: логин = {user.email}, пароль = *****")
-    public void login(User user) {
+    public LoginPage login(User user) {
         fillLoginField(user.getEmail());
         fillPasswordField(user.getPassword());
         clickSubmit();
+        return this;
     }
 
     public void fillLoginField(String username) {
