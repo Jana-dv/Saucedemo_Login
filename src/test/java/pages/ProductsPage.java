@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,14 +17,17 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Проверяем название заголовка страницы")
     public String getTitle() {
         return driver.findElement(title).getText();
     }
 
+    @Step("Проверяем, что название заголовка отображается")
     public boolean isTitlePresent() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(title2)).isDisplayed();
     }
 
+    @Step("Добавляем товар в корзину")
     public void addToCart(String goodsName) {
         By addToCart = By.xpath(ADD_TO_CART_BUTTON_PATTERN.formatted(goodsName));
         driver.findElement(addToCart).click();
@@ -42,4 +46,3 @@ public class ProductsPage extends BasePage {
         return driver.findElements(ITEM_NAME).size();
     }
 }
-
