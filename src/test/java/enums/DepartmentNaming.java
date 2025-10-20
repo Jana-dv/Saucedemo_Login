@@ -12,6 +12,4 @@ public enum DepartmentNaming {
     DepartmentNaming(String displayName) {
         this.displayName = displayName;
     }
-
-
 }
